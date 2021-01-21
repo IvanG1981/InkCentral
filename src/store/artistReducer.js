@@ -1,4 +1,5 @@
 import { inkCentralServer } from '../utils/apiaxios'
+import axios from 'axios';
 import {
   ARTIST_DELLOAD,
   ARTIST_DELISOK,
@@ -36,8 +37,9 @@ export function getArtists(searchValue) {
   return async function(dispatch) {
     dispatch({ type: ARTISTS_LOADING })
     try {
-  
-      const response = await inkCentralServer({
+      // const response = await inkCentralServer({
+      const response = await axios({
+        baseURL: process.env.REACT_APP_SERVER_URL,
         method: 'GET',
         url: `/artists${path}`
       })
@@ -56,6 +58,8 @@ export function getArtist(artistId){
     try {
       const token = sessionStorage.getItem('token')
       const response = await inkCentralServer({
+      // const response = await axios({
+        baseURL: process.env.REACT_APP_SERVER_URL,
         method: 'GET',
         url: `/artists/profile/${artistId}`,
         headers: {
@@ -165,7 +169,7 @@ export function searchInputBar(value) {
   }
 }
 
-const initialState = {
+export const initialState = {
   artists: [],
   artist: {},
   loggedArtist:{},
@@ -179,7 +183,7 @@ const initialState = {
   searchValue: ''
 }
 
-function artistReducer(state = initialState, action) {
+export function artistReducer(state = initialState, action) {
   switch(action.type) {
     case ARTISTS_LOADING:
       return {

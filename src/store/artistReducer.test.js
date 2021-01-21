@@ -1,10 +1,12 @@
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk'
 import moxios from 'moxios'
-import {
+import  {
   getArtists,
   ARTISTS_LOADING,
   ARTISTS_SUCCESS,
+  artistReducer,
+  initialState
  
 } from './artistReducer'
 
@@ -60,7 +62,6 @@ const mockArtists = [
 describe('artistReducer', ()=> {
   beforeEach(()=> {
     moxios.install()
-    console.log(moxios);
   })
 
   afterEach(()=>{
@@ -73,7 +74,7 @@ describe('artistReducer', ()=> {
     const { dispatch, getActions } = mockStore()
     const mockSearchValue = 'ciudad'
 
-    getArtists()(dispatch)
+    getArtists(mockSearchValue)(dispatch)
 
     await moxios.wait(jest.fn)
     const req = moxios.requests.mostRecent()
@@ -90,11 +91,12 @@ describe('artistReducer', ()=> {
     //     status: 200, 
     //     response: mockArtists 
     //   })
-    
+    // })
+    console.log(req);
     const actions = getActions();
     console.log(actions)
-    // expect(actions[0].type).toBe(ARTISTS_LOADING)
-    // expect(actions[1].type).toBe(ARTISTS_SUCCESS)
+    expect(actions[0].type).toBe(ARTISTS_LOADING)
+    expect(actions[1].type).toBe(ARTISTS_SUCCESS)
     //   .then(()=>{
     //     let actions = getActions()
     //     console.log(actions)
@@ -110,5 +112,12 @@ describe('artistReducer', ()=> {
     // console.log(actions);
     // expect(actions[0].type).toBe(ARTISTS_LOADING)
   })
+
+  it(
+    'should return initialState by Default if invalid action',
+    ()=>{
+      const state = artistReducer(undefined, { type:'INVALID' })
+      expect(state).toMatchObject(initialState)
+    })
 })
 
