@@ -83,8 +83,6 @@ describe('artistReducer', ()=> {
 
     await moxios.wait(jest.fn)
     const req = moxios.requests.mostRecent()
-    console.log(req)
-    console.log(moxios.requests)
     await req.respondWith({
       status: 200,
       response: mockResponse
