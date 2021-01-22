@@ -5,6 +5,7 @@ import  {
   getArtists,
   ARTISTS_LOADING,
   ARTISTS_SUCCESS,
+  ARTISTS_FAILURE,
   artistReducer,
   initialState
  
@@ -18,7 +19,7 @@ const mockArtists = [
     _id: 'asdkriwehrjksadhf', 
     name: 'Artist 1', 
     nickname: 'nickname1', 
-    location: 'city1', 
+    location: 'bogota', 
     phone: '343414314', 
     instagram:'sadfa', 
     facebook:'sfasd',
@@ -69,10 +70,14 @@ describe('artistReducer', ()=> {
   })
 
   it(
-  'should request artists and dispatch an ARTISTS_SUCCESS action with a payload',
+  'should request artists and dispatch an ARTISTS_LOADING and ARTISTS_SUCCESS action with a payload',
   async ()=>{
     const { dispatch, getActions } = mockStore()
-    const mockSearchValue = 'ciudad'
+    const mockSearchValue = 'Bogota'
+
+    const mockResponse = {
+      data: mockArtists[0]
+    }
 
     getArtists(mockSearchValue)(dispatch)
 
@@ -82,35 +87,13 @@ describe('artistReducer', ()=> {
     console.log(moxios.requests)
     await req.respondWith({
       status: 200,
-      response: mockArtists
+      response: mockResponse
     })
-    // moxios.wait(()=> {
-    //   const request = moxios.requests.mostRecent()
-    //   request.respondWith(
-    //   { 
-    //     status: 200, 
-    //     response: mockArtists 
-    //   })
-    // })
-    console.log(req);
     const actions = getActions();
-    console.log(actions)
     expect(actions[0].type).toBe(ARTISTS_LOADING)
     expect(actions[1].type).toBe(ARTISTS_SUCCESS)
-    //   .then(()=>{
-    //     let actions = getActions()
-    //     console.log(actions)
-    //     expect(actions[0].type).toBe(ARTISTS_LOADING)
-    //     expect(actions[1].type).toBe(ARTISTS_SUCCESS)
-    //     expect(actions[1].payload).toMatchObject(mockTasks)
-    //     console.log(actions);
-    //   })
-      
-    // })
+    expect(actions[1].payload).toMatchObject(mockArtists[0])
 
-    // const actions = getActions()
-    // console.log(actions);
-    // expect(actions[0].type).toBe(ARTISTS_LOADING)
   })
 
   it(
