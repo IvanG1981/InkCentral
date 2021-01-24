@@ -8,28 +8,28 @@ import {
 
 export const ARTISTS_LOADING = 'ARTISTS_LOADING'
 export const ARTISTS_SUCCESS = 'ARTISTS_SUCCESS'
-const ARTISTS_FAILURE = 'ARTISTS_FAILURE'
+export const ARTISTS_FAILURE = 'ARTISTS_FAILURE'
 
-const ARTIST_LOADING = 'ARTIST_LOADING'
-const ARTIST_SUCCESS = 'ARTIST_SUCCESS'
-const ARTIST_FAILURE = 'ARTIST_FAILURE'
+export const ARTIST_LOADING = 'ARTIST_LOADING'
+export const ARTIST_SUCCESS = 'ARTIST_SUCCESS'
+export const ARTIST_FAILURE = 'ARTIST_FAILURE'
 
-const ARTIST_LOGGED_LOADING = 'ARTIST_LOGGED_LOADING'
-const ARTIST_LOGGED_SUCCESS = 'ARTIST_LOGGED_SUCCESS'
-const ARTIST_LOGGED_FAILED = 'ARTIST_LOGGED_FAILED'
+export const ARTIST_LOGGED_LOADING = 'ARTIST_LOGGED_LOADING'
+export const ARTIST_LOGGED_SUCCESS = 'ARTIST_LOGGED_SUCCESS'
+export const ARTIST_LOGGED_FAILED = 'ARTIST_LOGGED_FAILED'
 
-const ARTIST_UPDATE_LOADING = 'ARTIST_UPDATE_LOADING'
-const ARTIST_UPDATE_SUCCESS = 'ARTIST_UPDATE_SUCCESS'
-const ARTIST_UPDATE_FAILED = 'ARTIST_UPDATE_FAILED'
+export const ARTIST_UPDATE_LOADING = 'ARTIST_UPDATE_LOADING'
+export const ARTIST_UPDATE_SUCCESS = 'ARTIST_UPDATE_SUCCESS'
+export const ARTIST_UPDATE_FAILED = 'ARTIST_UPDATE_FAILED'
 
-const CHANGE_INPUT = 'CHANGE_INPUT'
-const CHANGE_IMAGE_INPUT = 'CHANGE_IMAGE_INPUT'
+export const CHANGE_INPUT = 'CHANGE_INPUT'
+export const CHANGE_IMAGE_INPUT = 'CHANGE_IMAGE_INPUT'
 
-const CLEAN_ERROR = 'CLEAN_ERROR'
-const CLEAN_ISUPDATE = 'CLEAN_ISUPDATE'
-const LOGOUT_ARTIST = 'LOGOUT_ARTIST'
+export const CLEAN_ERROR = 'CLEAN_ERROR'
+export const CLEAN_ISUPDATE = 'CLEAN_ISUPDATE'
+export const LOGOUT_ARTIST = 'LOGOUT_ARTIST'
 
-const SEARCH_VALUE = 'SEARCH_VALUE'
+export const SEARCH_VALUE = 'SEARCH_VALUE'
 
 export function getArtists(searchValue) {
   const path = searchValue !== '' ? `?inputSearch=${searchValue}` : ''
@@ -57,8 +57,8 @@ export function getArtist(artistId){
     dispatch({ type: ARTIST_LOADING })
     try {
       const token = sessionStorage.getItem('token')
-      const response = await inkCentralServer({
-      // const response = await axios({
+      // const response = await inkCentralServer({
+      const response = await axios({
         baseURL: process.env.REACT_APP_SERVER_URL,
         method: 'GET',
         url: `/artists/profile/${artistId}`,
@@ -83,7 +83,8 @@ export function getLoggedArtist(){
     dispatch({ type: ARTIST_LOGGED_LOADING })
     try {
       const token = sessionStorage.getItem('token')
-      const response = await inkCentralServer({
+      // const response = await inkCentralServer({
+      const response = await axios({
         method: 'GET',
         url: '/artists/profile',
         headers: {
@@ -107,7 +108,8 @@ export function updateArtist( data ){
     try {
       dispatch({ type: ARTIST_UPDATE_LOADING })
       const token = sessionStorage.getItem('token')
-      const response = await inkCentralServer({
+      // const response = await inkCentralServer({
+      const response = await axios({
         method: 'PUT',
         url: '/artists/profile',
         data,
