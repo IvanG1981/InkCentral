@@ -1,6 +1,7 @@
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Form';
+import Col from 'react-bootstrap/Col';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
 import { LinkContainer } from 'react-router-bootstrap';
@@ -52,53 +53,60 @@ export function Navigation() {
   let user = userType || userTypeR
 
   return(
-    <Navbar collapseOnSelect expand="lg" fixed="top" bg="dark" variant="dark">
-      <LinkContainer to="/" className="brand">
-        <Navbar.Brand
-          onClick={handleBrandClick}
-        >
-          InkCentral
-        </Navbar.Brand>
-      </LinkContainer>
-      <Navbar.Toggle />
-
-      <Navbar.Collapse>
+    <Navbar 
+      collapseOnSelect 
+      expand="lg" 
+      fixed="top" 
+      bg="dark"  
+      variant="dark"
+      >
+        <Col>
+          <LinkContainer to="/" className="brand">
+            <Navbar.Brand
+              onClick={handleBrandClick}
+            >
+              InkCentral
+            </Navbar.Brand>
+          </LinkContainer>
+        </Col>
+      
+        {token ?
+        <Form inline className="searchform">
+          <FormControl
+            type="text"
+            placeholder="Search by location"
+            className="mr-sm-2"
+            onChange={handleSearchChange}
+            value={searchValue}
+          />
+        </Form> : null }
+          
         <Nav className="mr-auto">
-          { token ? (
-            <>
-              < UserProfileDropDownMenu
-                user = { user }
-                handleLogOut = { handleLogOut }
-                className="dropdown"
-              />
-            </> ) :
-            (
-              <>
-                <LinkContainer to="/login" >
-                  <Nav.Link>
-                    <i className="fas fa-sign-in-alt"></i> Login
-                  </Nav.Link>
-                </LinkContainer>
-
-                <LinkContainer to="/register">
-                  <Nav.Link>
-                    <i className="fas fa-user-plus"></i> Register
-                  </Nav.Link>
-                </LinkContainer>
-              </>
-            )
-          }
-        </Nav>
-          <Form inline className="searchform">
-            <FormControl
-              type="text"
-              placeholder="Search by location"
-              className="mr-sm-2"
-              onChange={handleSearchChange}
-              value={searchValue}
+        { token ? (
+          <>
+            < UserProfileDropDownMenu
+              user = { user }
+              handleLogOut = { handleLogOut }
+              className="dropdown"
             />
-          </Form>
-      </Navbar.Collapse>
+          </> ) :
+          (
+            <>
+              <LinkContainer to="/login" >
+                <Nav.Link>
+                  <i className="fas fa-sign-in-alt"></i> Login
+                </Nav.Link>
+              </LinkContainer>
+
+              <LinkContainer to="/register">
+                <Nav.Link>
+                  <i className="fas fa-user-plus"></i> Register
+                </Nav.Link>
+              </LinkContainer>
+            </>
+          )
+        }
+      </Nav>
     </Navbar>
   )
 }
