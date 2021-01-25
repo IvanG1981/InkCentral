@@ -35,8 +35,12 @@ export function CustomizeProfile() {
       return { loggedArtist, isUpdate, error_artist, isUpdating }
     }
   )
-  const handleImageChange = e => {
-    dispatch(changeImageInput(e.target.files, loggedArtist ))
+  // const handleImageChange = e => {
+  //   dispatch(changeImageInput(e.target.files, loggedArtist ))
+  // }
+  
+  function handleImageChange(imageFiles){
+    dispatch(changeImageInput(imageFiles, loggedArtist))
   }
   const handleChange = e => {
     dispatch(changeInput(e.target, loggedArtist ))

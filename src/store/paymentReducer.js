@@ -2,7 +2,7 @@ import {
   PAYMENT_LOADING,
   PAYMENT_CREATED,
   PAYMENT_FAILURE
-} from './actions/comment'
+} from './actions/payment'
 
 const initialState = {
   paymentMessage: null,
