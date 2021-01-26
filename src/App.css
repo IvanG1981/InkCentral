@@ -1,38 +1,186 @@
-.App {
+.main {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-top: 80px;
+}
+
+.loginForm, .registerForm, .passwordResetForm, .passwordResetSuccess{
+  background-color: darkgrey;
+  border-radius: 20px;
+  height: 482px;
+  padding: 25px;
+}
+
+.registerForm {
+  height: 530px;
+}
+.passwordResetForm {
+  height: 350px;
+}
+.passwordResetSuccess {
+  height: 230px;
+}
+
+.updateForm {
+  background-color: darkgrey;
+  border-radius: 20px;
+  padding: 25px;
+}
+.updateButton {
+  display: flex; 
+  justify-content: center;
+}
+
+.userTypeRadio {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+}
+
+.cardsAlign {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 900px;
+}
+
+.cardTitle{
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.imgTitle{
+    color: black;
+    color: rgba(0,0, 0, 0.7);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.artistCards,.cardImage {
+  width: 18rem;
+  margin-bottom: 15px;
+  cursor: pointer;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.artistCards:hover{
+  box-shadow: 8px 8px 5px grey;    
+  transform: scale(0.9);
+}
+
+.cardImage, .artistProfileImage {
+  height: 200px;
+  object-fit: cover;
+}
+
+.jumbo {
+  background-image: url('./images/cartographer.png');
+  height: 100px;
+}
+
+.artistProfileContainer {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin: 56px 115px 115px;
+  width: 85%;
 }
 
-.App-link {
-  color: #61dafb;
+.loader{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding-top: 50px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.user-type {
+  display: flex;
+  justify-content: space-around;
+}
+
+.nav-link {
+  color:darkgrey;
+}
+
+.brand {
+  font-family: 'Rock Salt', cursive;
+  margin: auto;
+}  
+
+@media only screen and (max-width: 576px){
+  .searchButton {
+    width: 100%;
+    margin: auto;
   }
-  to {
-    transform: rotate(360deg);
+  .dropdown {
+    margin: auto;
   }
 }
+
+tr {
+  text-align: center;
+}
+
+.xs-d, .xs-e {
+  font-size: 10px
+}
+
+.xs-d:hover {
+  color:red
+}
+
+.xs-e:hover {
+  color:blue
+}
+
+.comments {
+  height: 415px;
+}
+
+.social-media-icons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.network-title {
+  font-family: 'Rock Salt', cursive;
+}
+
+.contactar {
+  color: #128c7e;
+}
+
+.fa-instagram {
+  color: #833ab4;
+}
+
+.fa-instagram:hover {
+  color: #c13584;
+  font-weight: bold;
+}
+
+.fa-facebook:hover {
+  color: #3b5998;
+  font-weight: bold;
+}
+
+.fa-twitter:hover {
+  color: #00acee;
+
+  font-weight: bold;
+}
+
+.fa-whatsapp:hover {
+  color: #25D366;
+  font-weight: bold;
+}
+
+.wapp-button {
+  border-radius: 5px;
+  background-color: #f7f7f7;
+}
+
+.wapp-button:hover {
+  font-weight: bold;
+  font-size: 20px;
+  border: 2px solid green;
+  border-radius: 5px;
+} 
